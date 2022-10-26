@@ -3,6 +3,7 @@ import React , {useEffect, useState} from 'react'
 import NewItems from './NewItems'
 import propTypes from 'prop-types'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import Spinner from './Spinner'
 
 // export class News extends Component 
 
@@ -14,9 +15,9 @@ const News = (props) => {
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
   // document.title = `${capitalizeFirstLetter(props.category)} - NewsMonkey`;
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  // const capitalizeFirstLetter = (string) => {
+  //   return string.charAt(0).toUpperCase() + string.slice(1);
+  // }
   
 
 
@@ -36,7 +37,7 @@ const News = (props) => {
     props.setProgress(100);
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     newUpdate();
   }, []);
 
@@ -72,7 +73,7 @@ const News = (props) => {
     return (
       <>
         <h2 className="text-center">NewsMonkey - Top {props.category}</h2>
-
+        {loading && <Spinner/>}
         <InfiniteScroll
           dataLength={articles.length}
           next={fetchMoreData}
