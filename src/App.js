@@ -20,7 +20,7 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-        console.log(this.apikey)
+        
           <Navbar />
           <LoadingBar
             height={3}
