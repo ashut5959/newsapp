@@ -59,11 +59,10 @@ const News = (props) => {
   const fetchMoreData = async() => {
 
     setPage(page + 1);
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=62960b0c16ce4e4ca0bbe8f5b115feec&page=${page}&pagesize=${props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=62960b0c16ce4e4ca0bbe8f5b115feec&page=${page+1}&pagesize=${props.pageSize}`;
 
     let data = await fetch(url);
     let parseData = await data.json()
-    console.log(data);
     setArticles(articles.concat(parseData.articles))
     setTotalResults(parseData.totalResults)
       
@@ -78,7 +77,7 @@ const News = (props) => {
           dataLength={articles.length}
           next={fetchMoreData}
           hasMore={articles.length !== totalResults}
-          loader={<h4>Loading...</h4>}
+          loader={<h4><Spinner/></h4>}
         >
         <div className="container">
 
